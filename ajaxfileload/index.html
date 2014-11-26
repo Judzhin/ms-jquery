@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <style type="text/css">
+        .image {
+            width: 100px;
+            height: 100px;
+            overflow: hidden;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            float: left;
+        }
+        #images {
+            height: 110px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>jQuery Uploads</h1>
+
+<form action="#" enctype="multipart/form-data" method="post">
+    <ul>
+        <li id="images">
+            
+        </li>
+
+        <li>
+            <label for="uploader">File:</label>
+            <input type="file" name="uploader" id="uploader" multiple>
+        </li>
+    </ul>
+</form>
+
+</body>
+</html>
