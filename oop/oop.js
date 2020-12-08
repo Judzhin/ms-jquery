@@ -49,14 +49,16 @@ var APP = (function ($) {
         console.log('Class B, Constructor');
     };
 
-    B.prototype = $.extend(true, {
+    B.prototype = Object.create(A.prototype, {
         DEFAULTS: {
             propertyC: 'C'
         },
-        methodC: function () {
-            console.log('Class B, Method C');
+        methodC: {
+            value: function () {
+                console.log('Class B, Method C');
+            }
         }
-    }, A.prototype);
+    });
 
     /**
      *
@@ -68,21 +70,17 @@ var APP = (function ($) {
         console.log('Class C, Constructor');
     };
 
-    C.prototype = {
+    C.prototype = Object.create(B.prototype, {
         DEFAULTS: {
             propertyC: 'C'
         },
-        methodC: function () {
-            console.log('Class C, Method C');
-        },
-        methodOptions: function () {
-            console.log(this.$options);
+        methodC: {
+            value: function () {
+                console.log('Class C, Method C');
+                B.prototype.methodC.call(this, arguments);
+            }
         }
-    };
-
-    $.extend(true, C.prototype, B.prototype);
-
-    C.prototype.methodC.apply(C, arguments);
+    });
 
     return {
         DEFAULTS: {
