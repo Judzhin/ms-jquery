@@ -95,17 +95,17 @@ var APP = (function ($) {
 
             var self = this, $initializer = $.Deferred(function (deffered) {
                 $(function () {
-                    deffered.resolve.call(self, deffered.options);
+                    deffered.resolve.call(self, deffered.$options);
                 });
             });
 
-            this.$options = $.extend({}, this.DEFAULTS, options);
+            this.$options = $.extend(defaultOptions, this.DEFAULTS, options);
 
             $.each(this.initialize, function (name) {
                 if (name in self.$options) {
-                    self.initialize[name](self.$options[name]);
-                    // $initializer.options = self.$options[name];
-                    // $initializer.then(this, $initializer.options);
+                    // self.initialize[name](self.$options[name]);
+                    $initializer.$options = self.$options[name];
+                    $initializer.then(this, $initializer.$options);
                 }
             });
         },
